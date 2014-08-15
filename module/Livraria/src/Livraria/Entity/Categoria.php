@@ -7,18 +7,19 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="categorias")
+ * @ORM\Entity(repositoryClass="Livraria\Entity\CategoriaRepository")
  */
 class Categoria {
 
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\GeneratedValue
+     * @var  int
      */
     protected $id;
 
     /**
-     * 
      * @ORM\Column(type="text")
      * @var string
      */
