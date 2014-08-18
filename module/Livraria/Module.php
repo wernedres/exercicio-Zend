@@ -6,6 +6,7 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
 use Livraria\Model\CategoriaTable;
+use Livraria\Service\Categoria as CategoriaService;
 
 class Module  {
    
@@ -13,12 +14,11 @@ class Module  {
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getAutoloaderConfig()
-    {
+    public function getAutoloaderConfig() {
         return array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ . 'Admin ' => __DIR__ . '/src/' . __NAMESPACE__, "Admin",
+                    __NAMESPACE__.'Admin' => __DIR__ . '/src/' . __NAMESPACE__. "Admin",
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
             ),
@@ -34,7 +34,10 @@ class Module  {
                
                $categoriaService = new Model\CategoriaService($categoriaTable);
                return $categoriaService;
-              }
+               },
+               'Livraria\Service\Categoria' => function($service){
+                  return new CategoriaService($service->get('Doctrine\ORM\EntityManager'));
+               }
               
           )  
         );
