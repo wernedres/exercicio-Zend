@@ -1,25 +1,18 @@
-
-
-<h3>Nova Categoria</h3>
+<h3>EditarCategoria</h3>
 
 <br/>
 
 
-<?php 
-
+<?php
 $form = $this->form;
 
-$form->setAttribute('action', $this->url( 'livraria-admin' ,array('controller'=>'categorias','action'=>'new')));
+$form->setAttribute('action', $this->url('livraria-admin-interna', array('controller' => 'categorias', 'action' => 'edit')));
 
 
 $form->prepare();
-echo $this->form()->openTag($form); 
+echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('nome')),"<br/>" ;
+echo $this->formRow($form->get('nome')), "<br/>";
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();
-
-
-
-
 ?>
