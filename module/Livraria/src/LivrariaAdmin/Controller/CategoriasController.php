@@ -46,7 +46,7 @@ class CategoriasController extends AbstractActionController {
         $repository = $this->getEm()->getRepository('Livraria\Entity\Categoria');
         $entity = $repository->find($this->params()->fromRoute('id', 0));
 
-        if ($this->params()->fromRoute('id',0))
+        if ($this->params()->fromRoute('id', 0))
             $form->setData($entity->toArray());
 
         if ($request->isPost()) {
@@ -61,6 +61,12 @@ class CategoriasController extends AbstractActionController {
             }
         }
         return new ViewModel(array('form' => $form));
+    }
+
+    public function deleteAction() {
+        $service = $this->getServiceLocator()->get('Livraria\Service\Categoria');
+        if ($service->delete($this->params()->fromRoute('id', 0)))
+            return $this->redirect()->toRoute('livraria-admin', array('controller' => 'categorias'));
     }
 
     /**

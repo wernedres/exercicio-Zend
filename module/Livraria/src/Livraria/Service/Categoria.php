@@ -33,4 +33,13 @@ class Categoria {
         return $entity;
     }
 
+    public function delete($id) {
+        $entity = $this->em->getReference('Livraria\Entity\Categoria', $id);
+        if ($entity) {
+            $this->em->remove($entity);
+            $this->em->flush();
+            return $id;
+        }
+    }
+
 }

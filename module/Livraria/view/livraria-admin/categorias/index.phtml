@@ -1,6 +1,9 @@
 <h3>Categorias</h3>
 <br/>
 
+<p> <a href="<?php echo $this->url('livraria-admin',array('controller'=>'categorias','action'=>'new'));?>">Novo</a></p>
+
+
 <table  class="table">
     <tr>
         <th>Id</th>
@@ -8,12 +11,20 @@
         <th>Ação</th>
     </tr>
 
-<?php foreach ($this->data as $entity):?>
-    <tr>
-        <td><?php echo $entity->getId();?></td>
-        <td><?php echo $entity->getNome(); ?></td>
-        <td></td>
-</tr>
-    <?php endforeach;?>
-          
+    <?php foreach ($this->data as $entity): ?>
+        <tr>
+            <td><?= $entity->getId() ?></td>
+            <td><?= $entity->getNome() ?></td>
+            <td>
+                <a href="<?php echo $this->url('livraria-admin-interna', 
+                        array('controller' => 'categorias', 'action' => 'edit', 'id' => $entity->getId()));
+    ?>">Editar<a/>
+                <a href="<?php echo $this->url('livraria-admin-interna',
+                        array('controller' => 'categorias', 'action' => 'delete', 'id' => $entity->getId()));
+    ?>">Deletar<a/>
+
+            </td>
+        </tr>
+    <?php endforeach; ?>
+
 </table>
