@@ -56,8 +56,7 @@ abstract class CrudController extends AbstractActionController {
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-
-
+                         
                 $service = $this->getServiceLocator()->get($this->service);
                 $service->update($request->getPost()->toArray());
 
@@ -71,8 +70,24 @@ abstract class CrudController extends AbstractActionController {
         $service = $this->getServiceLocator()->get($this->service);
         if ($service->delete($this->params()->fromRoute('id', 0)))
           return $this->redirect()->toRoute($this->route, array('controller' => $this->controller));
+    
+         try {
+            //Faz a pessistencia no banco de dados
+            $em->persist($entity);
+            $em->flush();
+        } catch (DBALException $e) {
+            //Caso ocorra alguma exeção, pega o codigo e a menssagem do erro
+            $error = true;
+            $details['code'] = $e->getPrevious()->getCode();
+            $details['message'] = $e->getMessage();
+        }
+        
+        
+        
     }
-
+    
+    
+            
     /**
      * @return EntityManager
      */

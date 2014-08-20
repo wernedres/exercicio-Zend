@@ -21,8 +21,9 @@ class UserIdentity extends AbstractHelper {
 
         if ($this->getAuthService()->hasIdentity()) {
             return $this->getAuthService()->getIdentity();
-        } else
+        } else {
             return false;
+        }
     }
 
 }

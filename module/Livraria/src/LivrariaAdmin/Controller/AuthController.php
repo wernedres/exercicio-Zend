@@ -35,19 +35,20 @@ class AuthController extends AbstractActionController {
                 if ($result->isValid()) {
                     $sessionStorage->write($auth->getIdentity()['user'], null); //gravando essa entidade user no sessionStorage
                     return $this->redirect()->toRoute("livraria-admin", array('controller' => 'categorias')); //se o usuario se autenticar sera redirecionado para paginas de categorias
-                } else 
+                } else {
                     $error = true;
+                }
             }
         }
-        return  new ViewModel(array('form'=>$form,'error'=>$error));
+        return new ViewModel(array('form' => $form, 'error' => $error));
     }
-    
-   //criando Método de Logout 
-    public function logoutAction(){
-        $auth = new AuthenticationService;//pegando a autenticação
+
+    //criando Método de Logout 
+    public function logoutAction() {
+        $auth = new AuthenticationService; //pegando a autenticação
         $auth->setStorage(new SessionStorage('LivrariaAdmin')); //setando o storage e tratando da autenticação da da livraria admin
         $auth->clearIdentity(); //Limpa a indentidade do camarada  e o cara não esta mais logado no sittema
-    
+
         return $this->redirect()->toRoute('livraria-admin-auth');
     }
 
