@@ -1,0 +1,40 @@
+<h3>Livros</h3>
+<br/>
+
+<p> <a href="<?php echo $this->url('livraria-admin',array('controller'=>'livros','action'=>'new'));?>">Novo</a></p>
+
+
+<table  class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Categorias</th>
+        <th>Valor</th>
+        <th>Autor</th>
+        <th>Isbn</th>
+        <th>Editar</th>
+        <th>Deletar</th>
+    </tr>
+
+    <?php foreach ($this->data as $entity): ?>
+        <tr>
+            <td><?= $entity->getId() ?></td>
+            <td><?= $entity->getNome() ?></td>
+            <td><?= $entity->getCategoria() ?></td>
+            <td><?= $entity->getValor() ?></td>
+            <td><?= $entity->getAutor() ?></td>
+            <td><?= $entity->getIsbn() ?></td>
+            <td>
+                <a href="<?php echo $this->url('livraria-admin-interna',array('controller' => 'livros', 'action' => 'edit', 'id' => $entity->getId()));
+    ?>">Editar</a></td>
+               
+                <td> 
+                <a href="<?php echo $this->url('livraria-admin-interna',
+                        array('controller' => 'livros', 'action' => 'delete', 'id' => $entity->getId()));
+    ?>">Deletar</a>
+
+           </td>
+        </tr>
+    <?php endforeach; ?>
+
+</table>

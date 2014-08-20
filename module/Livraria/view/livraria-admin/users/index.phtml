@@ -1,13 +1,14 @@
-<h3>Categorias</h3>
+<h3>Uusarios</h3>
 <br/>
 
-<p> <a href="<?php echo $this->url('livraria-admin',array('controller'=>'categorias','action'=>'new'));?>">Novo</a></p>
+<p> <a href="<?php echo $this->url('livraria-admin',array('controller'=>'users','action'=>'new'));?>">Novo</a></p>
 
 
 <table  class="table">
     <tr>
         <th>Id</th>
         <th>Nome</th>
+        <th>Email</th>
         <th>Editar</th>
         <th>Deletar</th>
     </tr>
@@ -16,13 +17,14 @@
         <tr>
             <td><?= $entity->getId() ?></td>
             <td><?= $entity->getNome() ?></td>
+            <td><?= $entity->getEmail() ?></td>
             <td>
-                <a href="<?php echo $this->url('livraria-admin-interna',array('controller' => 'categorias', 'action' => 'edit', 'id' => $entity->getId()));
+                <a href="<?php echo $this->url('livraria-admin-interna',array('controller' => 'users', 'action' => 'edit', 'id' => $entity->getId()));
     ?>">Editar</a></td>
                
                 <td> 
                 <a href="<?php echo $this->url('livraria-admin-interna',
-                        array('controller' => 'categorias', 'action' => 'delete', 'id' => $entity->getId()));
+                        array('controller' => 'users', 'action' => 'delete', 'id' => $entity->getId()));
     ?>">Deletar</a>
 
            </td>

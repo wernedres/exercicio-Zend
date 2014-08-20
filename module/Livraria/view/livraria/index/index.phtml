@@ -1,10 +1,20 @@
 
-<h3>Categorias Fofinho</h3>
+<h3>Foda-se Categorias e Livros</h3>
 
 <ul>
-    
 
-<?php foreach ($this->categorias as  $categoria): ?>
-    <li><?php  echo $categoria ?></li>
-      <?php endforeach ; ?>
+
+    <?php foreach ($this->categorias as $categoria): ?>
+        <li><?php echo $categoria ?>
+
+            <ul>
+                <?php foreach ($categoria->getLivros() as $livro): ?>
+                    <li><?php echo $livro->getNome(); ?></li>
+                <?php endforeach; ?>
+
+
+            </ul>
+        </li>
+
+    <?php endforeach; ?>
 </ul>
