@@ -8,7 +8,7 @@ return array(
             'livraria-home' => array(
                 'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route' => '/livraria',
+                    'route' => '/',
                     'defaults' => array(
                         'controller' => 'Livraria\Controller\Index',
                         'action' => 'index',
